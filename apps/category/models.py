@@ -1,7 +1,7 @@
-from autoslug import AutoSlugField
 from uuid import uuid4
-from django.urls import reverse
 from django.db import models
+from django.urls import reverse
+from autoslug import AutoSlugField
 
 
 class Category(models.Model):
