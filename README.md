@@ -1,5 +1,6 @@
 # bookr-dev-test
 An ecommerce test exercise.
+- project home page serves as the swagger documentation.
 
 # Steps to run project
 - clone this repo to your system.
