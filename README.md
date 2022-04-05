@@ -16,6 +16,14 @@ virtualenv venv
 ```
 source venv/bin/activate
 ```
+- Migrate project with the below command.
+```
+python manage.py migrate
+```
+- Make migrations project with the below command.
+```
+python manage.py makemigrations
+```
 - run project with command
 ```
 python manage.py ruserver
