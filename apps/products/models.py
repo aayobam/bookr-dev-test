@@ -10,7 +10,7 @@ from django.core.validators import MinValueValidator
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from="name")
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     quantity = models.IntegerField(validators=[MinValueValidator(1)])

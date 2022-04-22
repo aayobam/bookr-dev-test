@@ -18,9 +18,10 @@ class Order(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     phone_no = models.CharField(max_length=11)
-    created_on = models.DateTimeField(auto_now_add=True)
     paid_amount = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(1)])
     reference = models.CharField(max_length=10, default=get_reference, unique=True, validators=[MinValueValidator(10)])
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ("-created_on",)

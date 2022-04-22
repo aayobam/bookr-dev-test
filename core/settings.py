@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'apps.category',
     'apps.products',
     'apps.orders',
+    'apps.items',
+    'apps.cart',
 
     #third party apps
     'drf_yasg',
@@ -225,3 +227,15 @@ LOGGING = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+EMAIL_BACKENDS = env("EMAIL_BACKEND")
+EMAIL_HOST = env("EMAIL_HOST")
+#465
+EMAIL_PORT = 587
+USE_TLS = True
+USE_SSL = True
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+CONTACT_EMAIL = env('CONTACT_EMAIL')

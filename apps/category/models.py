@@ -6,7 +6,7 @@ from autoslug import AutoSlugField
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from="name")
 
 

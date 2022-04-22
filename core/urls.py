@@ -26,8 +26,10 @@ urlpatterns = [
     path('api/v1/category/', include("apps.category.urls")),
     path('api/v1/products/', include("apps.products.urls")),
     path('api/v1/orders/', include("apps.orders.urls")),
+    path('api/v1/items/', include("apps.items.urls")),
+    path('api/v1/cart/', include("apps.cart.urls")),
 
-    # drf-yasg open api
+   # drf-yasg open api
    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
    path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
