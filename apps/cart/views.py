@@ -1,4 +1,5 @@
-from uuid import UUID
+import uuid
+from pyparsing import identbodychars
 from rest_framework import permissions
 from .serializers import CartSerializer
 from apps.products.models import Product
@@ -24,33 +25,26 @@ class CreateCartApiView(generics.CreateAPIView):
         if payload["all_products"] == []:
             raise ValidationError("Your cart in empty.")
 
-        for product in payload["all_products"]:
+        for item in payload["all_products"]:
+            product = get_object_or_404(Product, id=item["product_id"])
 
-            print(f"PRODUCTS LIST = {payload['all_products']}")
-
-            product_info = get_object_or_404(Product, id=product["product_id"])
-
-            # if product in payload["all_products"]:
-            #     raise ValidationError("You cannot have multiple instance of a product in cart.")
-
-            if not product_info:
+            if not product:
                 raise ValidationError("Product not found.")
-            
-            if product["quantity"] < 1:
+                
+            if item["quantity"] < 1: 
                 raise ValidationError("Product quantity cannot be lesser than 1.")
 
-            product["name"] = product_info.name
-            product["price"] = product_info.price
+            item["name"] = product.name
+            item["price"] = product.price
+            item["total_price"] = item["price"] * item["quantity"]
 
-            product_total_price = product["price"] * product["quantity"]
-            product["total_price"] = float(product_total_price)
-            cart_total_price = cart_total_price + product["total_price"]
-
-            payload["all_products"].append(product)
-            
+            if item in payload["all_products"]:
+                pass
+            payload["all_products"].append(item)
+            cart_total_price = cart_total_price + float(item["total_price"])
             payload["cart_total_price"] = cart_total_price
-            print(f"PAYLOAD = {payload}\n")
 
             response = self.serializer_class(data=payload)
-            print(f"RESPONSE DATA = {response.initial_data}\n")
-            return Response(response.initial_data, status=status.HTTP_201_CREATED)
+
+            print(f"\n Response = {response.initial_data}")
+            return Response(response.initial_data, status=status.HTTP_200_OK)

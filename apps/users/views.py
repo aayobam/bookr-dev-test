@@ -65,7 +65,7 @@ class UserDetailApiView(generics.RetrieveAPIView):
 
 class UserUpdateApiView(generics.RetrieveUpdateAPIView):
     """
-    Each user can uedit/pdate his/her detail but can't edit/update other
+    Each user can edit/pdate his/her detail but can't edit/update other
     users account details. Only the superuser can edit/update all users details.
     """
     serializer_class = UserSerializer

@@ -19,4 +19,6 @@ class CartProductSerializer(serializers.Serializer):
     product_name = serializers.CharField(required=True)
     quantity = serializers.IntegerField(validators=[validate_quantity], required=True)
     price = serializers.DecimalField(max_digits=10, decimal_places=2, validators=[validate_price], required=True)
-    # url = serializers.HyperlinkedIdentityField(view_name='product-detail', lookup_field='id', read_only=True)
+
+    class Meta:
+        fields = ['product_id', 'product_name', 'quantity', 'price']
