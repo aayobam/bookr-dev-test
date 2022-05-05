@@ -1,5 +1,5 @@
 # bookr-dev-test
-An ecommerce test exercise.
+An ecommerce API webapp built with python and django rest framework.
 - project home page serves as the swagger documentation.
 
 # Steps to run project
